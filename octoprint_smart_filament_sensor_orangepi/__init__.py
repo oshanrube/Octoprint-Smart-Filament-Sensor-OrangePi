@@ -2,13 +2,13 @@
 from __future__ import absolute_import
 import octoprint.plugin
 from octoprint.events import Events
-import RPi.GPIO as GPIO
+import OPi.GPIO as GPIO
 from time import sleep
 from datetime import datetime
 import flask
 import json
-from octoprint_smart_filament_sensor.filament_motion_sensor_timeout_detection import FilamentMotionSensorTimeoutDetection
-from octoprint_smart_filament_sensor.data import SmartFilamentSensorDetectionData
+from octoprint_smart_filament_sensor_orangepi.filament_motion_sensor_timeout_detection import FilamentMotionSensorTimeoutDetection
+from octoprint_smart_filament_sensor_orangepi.data import SmartFilamentSensorDetectionData
 
 class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
                                  octoprint.plugin.EventHandlerPlugin,
@@ -18,9 +18,9 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
                                  octoprint.plugin.SimpleApiPlugin):
 
     def initialize(self):
-        self._logger.info("Running RPi.GPIO version '{0}'".format(GPIO.VERSION))
+        self._logger.info("Running OPi.GPIO version '{0}'".format(GPIO.VERSION))
         if GPIO.VERSION < "0.6":       # Need at least 0.6 for edge detection
-            raise Exception("RPi.GPIO must be greater than 0.6")
+            raise Exception("OPi.GPIO must be greater than 0.6")
         GPIO.setwarnings(False)        # Disable GPIO warnings
 
         self.print_started = False
@@ -34,7 +34,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 #Properties
     @property
     def motion_sensor_pin(self):
-        return int(self._settings.get(["motion_sensor_pin"]))
+        return str(self._settings.get(["motion_sensor_pin"]))
 
     @property
     def motion_sensor_pause_print(self):
@@ -76,8 +76,11 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
         # Clean up before intializing again, because ports could already be in use
 
         if(self.mode == 0):
-            self._logger.info("Using Board Mode")
-            GPIO.setmode(GPIO.BOARD)
+            self._logger.info("Using SUNXI Mode")
+			GPIO.setmode(GPIO.SUNXI)
+		elif(self.mode == 1):
+			self._logger.info("Using Board Mode")
+			GPIO.setmode(GPIO.BOARD)
         else:
             self._logger.info("Using BCM Mode")
             GPIO.setmode(GPIO.BCM)
@@ -100,10 +103,10 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
         self._data.filament_moving = False
         self.motion_sensor_thread = None
 
-        self.load_smart_filament_sensor_data()
+        self.load_smart_filament_sensor_orangepi_data()
 
 
-    def load_smart_filament_sensor_data(self):
+    def load_smart_filament_sensor_orangepi_data(self):
         self._data.remaining_distance = self.motion_sensor_detection_distance
 
     def on_after_startup(self):
@@ -115,7 +118,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
             #Motion sensor
             mode=0,    # Board Mode
             motion_sensor_enabled = True, #Sensor detection is enabled by default
-            motion_sensor_pin=-1,  # Default is no pin
+            motion_sensor_pin='-1',  # Default is no pin
             detection_method = 0, # 0 = timeout detection, 1 = distance detection
 
             # Distance detection
@@ -135,7 +138,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
         return [dict(type="settings", custom_bindings=True)]
 
     def get_assets(self):
-        return dict(js=["js/smartfilamentsensor_sidebar.js", "js/smartfilamentsensor_settings.js"])
+        return dict(js=["js/smartfilamentsensor_orangepi_sidebar.js", "js/smartfilamentsensor_orangepi_settings.js"])
 
 # Sensor methods
     # Connection tests
@@ -352,14 +355,14 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 # Plugin update methods
     def update_hook(self):
         return dict(
-            smartfilamentsensor=dict(
+            smartfilamentsensor_orangepi=dict(
                 displayName="Smart Filament Sensor",
                 displayVersion=self._plugin_version,
 
                 # version check: github repository
                 type="github_release",
                 user="Royrdan",
-                repo="Octoprint-Smart-Filament-Sensor",
+                repo="Octoprint-Smart-Filament-Sensor-OrangePi",
                 current=self._plugin_version,
 
                 # stable releases
@@ -379,7 +382,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 				],
 
                 # update method: pip
-                pip="https://github.com/Royrdan/Octoprint-Smart-Filament-Sensor/archive/{target_version}.zip"
+                pip="https://github.com/Royrdan/Octoprint-Smart-Filament-Sensor-OrangePi/archive/{target_version}.zip"
             )
         )
 
@@ -439,7 +442,7 @@ def __plugin_load__():
 
 def __plugin_check__():
     try:
-        import RPi.GPIO
+        import OPi.GPIO
     except ImportError:
         return False
 

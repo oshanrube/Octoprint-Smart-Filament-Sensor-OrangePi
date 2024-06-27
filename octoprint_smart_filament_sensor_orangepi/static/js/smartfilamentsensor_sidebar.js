@@ -3,7 +3,7 @@ $(function(){
         var self = this;
 
         self.settingsViewModel = parameters[0];
-        //self.smartfilamentsensorSettings = self.settingsViewModel.settings.plugins.smartfilamentsensor;
+        //self.smartfilamentsensor_orangepiSettings = self.settingsViewModel.settings.plugins.smartfilamentsensor_orangepi;
 
         self.isSensorEnabled = ko.observable(undefined);
         self.remainingDistance = ko.observable(undefined);
@@ -11,9 +11,9 @@ $(function(){
         self.isFilamentMoving = ko.observable(undefined);
         self.isConnectionTestRunning = ko.observable(false);
 
-        //Returns the value in Yes/No if the Sensor is enabled 
+        //Returns the value in Yes/No if the Sensor is enabled
         self.getSensorEnabledString = function(){
-            var sensorEnabled = self.settingsViewModel.settings.plugins.smartfilamentsensor.motion_sensor_enabled();
+            var sensorEnabled = self.settingsViewModel.settings.plugins.smartfilamentsensor_orangepi.motion_sensor_enabled();
 
             if(sensorEnabled){
                 return "Yes";
@@ -25,7 +25,7 @@ $(function(){
 
         // Returns the value of detection_method as string
         self.getDetectionMethodString = function(){
-            var detectionMethod = self.settingsViewModel.settings.plugins.smartfilamentsensor.detection_method();
+            var detectionMethod = self.settingsViewModel.settings.plugins.smartfilamentsensor_orangepi.detection_method();
 
             if(detectionMethod == 0){
                 return "Timeout Detection";
@@ -36,7 +36,7 @@ $(function(){
         };
 
         self.getDetectionMethodBoolean = ko.pureComputed(function(){
-            var detectionMethod = self.settingsViewModel.settings.plugins.smartfilamentsensor.detection_method();
+            var detectionMethod = self.settingsViewModel.settings.plugins.smartfilamentsensor_orangepi.detection_method();
 
             if(detectionMethod == 0){
                 return false;
@@ -47,10 +47,10 @@ $(function(){
         });
 
         self.onDataUpdaterPluginMessage = function(plugin, data){
-            if(plugin !== "smartfilamentsensor"){
+            if(plugin !== "smartfilamentsensor_orangepi"){
                 return;
             }
-            
+
             var message = JSON.parse(data);
             self.remainingDistance( Math.round(message["_remaining_distance"]) );
             self.lastMotionDetected((new Date((message["_last_motion_detected"] * 1000))).toString());
@@ -72,7 +72,7 @@ $(function(){
 
         self.startConnectionTest = function(){
             $.ajax({
-                url: API_BASEURL + "plugin/smartfilamentsensor",
+                url: API_BASEURL + "plugin/smartfilamentsensor_orangepi",
                 type: "POST",
                 dataType: "json",
                 data: JSON.stringify({ "command": "startConnectionTest" }),
@@ -83,7 +83,7 @@ $(function(){
 
         self.stopConnectionTest = function(){
             $.ajax({
-                url: API_BASEURL + "plugin/smartfilamentsensor",
+                url: API_BASEURL + "plugin/smartfilamentsensor_orangepi",
                 type: "POST",
                 dataType: "json",
                 data: JSON.stringify({ "command": "stopConnectionTest" }),
@@ -101,6 +101,6 @@ $(function(){
         construct: SmartFilamentSensorSidebarViewModel,
         name: "smartFilamentSensorSidebarViewModel",
         dependencies: ["settingsViewModel"],
-        elements: ["#sidebar_plugin_smartfilamentsensor"]
+        elements: ["#sidebar_plugin_smartfilamentsensor_orangepi"]
     });
 });

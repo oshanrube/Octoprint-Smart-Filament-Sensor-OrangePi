@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+import OPi.GPIO as GPIO
 import threading
 import time
 
@@ -26,7 +26,7 @@ class FilamentMotionSensorTimeoutDetection(threading.Thread):
             GPIO.remove_event_detect(self.used_pin)
         except:
             self._logger.warn("Pin " + str(pUsedPin) + " not used before")
-            
+
         GPIO.add_event_detect(self.used_pin, GPIO.BOTH, callback=self.motion)
 
     # Override run method of threading

@@ -5,36 +5,36 @@
 
 # The plugin's identifier, has to be unique
 from setuptools import setup
-plugin_identifier = "smartfilamentsensor"
+plugin_identifier = "smartfilamentsensor_orangepi"
 
 # The plugin's python package, should be "octoprint_<plugin identifier>", has to be unique
-plugin_package = "octoprint_smart_filament_sensor"
+plugin_package = "octoprint_smart_filament_sensor_orangepi"
 
 # The plugin's human readable name. Can be overwritten within OctoPrint's internal data via __plugin_name__ in the
 # plugin module
-plugin_name = "Octoprint-Smart-Filament-Sensor"
+plugin_name = "Octoprint-Smart-Filament-Sensor-OrangePi"
 
 # The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
-plugin_version = "1.2"
+plugin_version = "1.0"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
 plugin_description = "A plugin to directly add Smart Filament Sensors like BigTreeTech Smart Filament Sensor to Octoprint."
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
-plugin_author = "Royrdan"
+plugin_author = "oshanrube"
 
 # The plugin's author's mail address.
-plugin_author_email = "transperancymedia@gmail.com"
+plugin_author_email = "oshanrube@gmail.com"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
-plugin_url = "https://github.com/royrdan/Octoprint-Smart-Filament-Sensor"
+plugin_url = "https://github.com/oshanrube/Octoprint-Smart-Filament-Sensor-OrangePi"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
 plugin_license = "AGPLv3"
 
 # Any additional requirements besides OctoPrint should be listed here
-plugin_requires = ['RPi.GPIO']
+plugin_requires = ['OPi.GPIO']
 
 # --------------------------------------------------------------------------------------------------------------------
 # More advanced options that you usually shouldn't have to touch follow after this point

@@ -10,7 +10,7 @@
 ##  - To save some filament you can unload the filament
 ##      before and move it manually in the sensor
 
-import RPi.GPIO as GPIO
+import OPi.GPIO as GPIO
 import time
 
 #CONST
@@ -28,7 +28,7 @@ lastValue = GPIO.input(USED_PIN)
 lastMotion = time.time()
 
 def main():
-	try: 
+	try:
 		GPIO.add_event_detect(USED_PIN, GPIO.BOTH, callback=motion)
 
 		while True:
@@ -40,7 +40,7 @@ def main():
 				print ("Moving")
 
 			time.sleep(0.250)
-		
+
 		GPIO.remove_event_detect(USED_PIN)
 	except KeyboardInterrupt:
 		print ("Done")

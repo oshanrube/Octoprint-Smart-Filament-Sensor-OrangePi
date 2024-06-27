@@ -12,9 +12,9 @@ $(function(){
         self.isConnectionTestRunning = ko.observable(false);
 
         self.onStartup = function() {
-            self.connectionTestDialog = $("#settings_plugin_smartfilamentsensor_connectiontest");
+            self.connectionTestDialog = $("#settings_plugin_smartfilamentsensor_orangepi_connectiontest");
         };
-        
+
         self.showConnectionTest = function() {
             self.connectionTestDialog.modal({
                 show: true
@@ -22,10 +22,10 @@ $(function(){
         };
 
         self.onDataUpdaterPluginMessage = function(plugin, data){
-            if(plugin !== "smartfilamentsensor"){
+            if(plugin !== "smartfilamentsensor_orangepi"){
                 return;
             }
-            
+
             var message = JSON.parse(data);
             self.remainingDistance(message["_remaining_distance"]);
             self.lastMotionDetected(message["_last_motion_detected"]);
@@ -45,7 +45,7 @@ $(function(){
 
         self.startConnectionTest = function(){
             $.ajax({
-                url: API_BASEURL + "plugin/smartfilamentsensor",
+                url: API_BASEURL + "plugin/smartfilamentsensor_orangepi",
                 type: "POST",
                 dataType: "json",
                 data: JSON.stringify({ "command": "startConnectionTest" }),
@@ -56,7 +56,7 @@ $(function(){
 
         self.stopConnectionTest = function(){
             $.ajax({
-                url: API_BASEURL + "plugin/smartfilamentsensor",
+                url: API_BASEURL + "plugin/smartfilamentsensor_orangepi",
                 type: "POST",
                 dataType: "json",
                 data: JSON.stringify({ "command": "stopConnectionTest" }),
@@ -74,6 +74,6 @@ $(function(){
         construct: SmartFilamentSensorSettingsViewModel,
         name: "smartFilamentSensorSettingsViewModel",
         dependencies: ["settingsViewModel", "printerStateViewModel"],
-        elements: ["#settings_plugin_smartfilamentsensor"]
+        elements: ["#settings_plugin_smartfilamentsensor_orangepi"]
     });
 });

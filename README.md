@@ -1,4 +1,4 @@
-# Octoprint-Smart-Filament-Sensor
+# Octoprint-Smart-Filament-Sensor-OrangePi
 
 [OctoPrint](http://octoprint.org/) plugin that lets integrate Smart Filament Sensors like BigTreeTechs SmartFilamentSensor directly to RaspberryPi GPIO pins. This enables that this sensor can also be used on 3D Printers, that do not have a E0-Stop like e.g. Creality 1.1.4 Mainboard of Ender 3.
 
@@ -25,7 +25,7 @@ This plugin can use the GPIO.BOARD or GPIO.BCM numbering scheme.
 ## Installation
 
 * Install via the bundled [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager).
-* Manually using this URL: https://github.com/Royrdan/Octoprint-Smart-Filament-Sensor/archive/master.zip
+* Manually using this URL: https://github.com/Royrdan/Octoprint-Smart-Filament-Sensor-OrangePi/archive/master.zip
 
 After installation a restart of Octoprint is recommended.
 
@@ -39,7 +39,7 @@ After installation a restart of Octoprint is recommended.
 Note: The BTT Pins are labeled as follows
 
 S for SIN  <--- signal line (i.e. data source--attach to chosen GPIO pin)
-G for GND  <--- This is ground 
+G for GND  <--- This is ground
 V for VDD  <---  +3.3v in
 
 **Attention**
