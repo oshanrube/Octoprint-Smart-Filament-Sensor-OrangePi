@@ -19,8 +19,6 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 
     def initialize(self):
         self._logger.info("Running OPi.GPIO version '{0}'".format(GPIO.VERSION))
-        if GPIO.VERSION < "0.6":       # Need at least 0.6 for edge detection
-            raise Exception("OPi.GPIO must be greater than 0.6")
         GPIO.setwarnings(False)        # Disable GPIO warnings
 
         self.print_started = False
