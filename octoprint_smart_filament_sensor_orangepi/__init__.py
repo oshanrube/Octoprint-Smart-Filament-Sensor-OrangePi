@@ -18,7 +18,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
                                  octoprint.plugin.SimpleApiPlugin):
 
     def initialize(self):
-        self._logger.info("Running OPi.GPIO version '{0}'".format(GPIO.VERSION))
+        self._logger.info("Running OPi.GPIO")
         GPIO.setwarnings(False)        # Disable GPIO warnings
 
         self.print_started = False
