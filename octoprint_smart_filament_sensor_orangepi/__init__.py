@@ -361,7 +361,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 
                 # version check: github repository
                 type="github_release",
-                user="Royrdan",
+                user="oshanrube",
                 repo="Octoprint-Smart-Filament-Sensor-OrangePi",
                 current=self._plugin_version,
 
@@ -382,7 +382,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 				],
 
                 # update method: pip
-                pip="https://github.com/Royrdan/Octoprint-Smart-Filament-Sensor-OrangePi/archive/{target_version}.zip"
+                pip="https://github.com/oshanrube/Octoprint-Smart-Filament-Sensor-OrangePi/archive/{target_version}.zip"
             )
         )
 
