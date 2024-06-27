@@ -76,7 +76,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
         if(self.mode == 0):
             self._logger.info("Using SUNXI Mode")
             GPIO.setmode(GPIO.SUNXI)
-		elif(self.mode == 1):
+        elif(self.mode == 1):
             self._logger.info("Using Board Mode")
             GPIO.setmode(GPIO.BOARD)
         else:
@@ -365,19 +365,19 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 
                 # stable releases
                 stable_branch=dict(
-					name="Stable",
-					branch="master",
-					comittish=["master"]
-				),
+                    name="Stable",
+                    branch="master",
+                    comittish=["master"]
+                ),
 
-				# release candidates
-				prerelease_branches=[
-					dict(
-						name="Release Candidate",
-						branch="PreRelease",
-						comittish=["PreRelease"],
-					)
-				],
+                # release candidates
+                prerelease_branches=[
+                    dict(
+                        name="Release Candidate",
+                        branch="PreRelease",
+                        comittish=["PreRelease"],
+                    )
+                ],
 
                 # update method: pip
                 pip="https://github.com/oshanrube/Octoprint-Smart-Filament-Sensor-OrangePi/archive/{target_version}.zip"
