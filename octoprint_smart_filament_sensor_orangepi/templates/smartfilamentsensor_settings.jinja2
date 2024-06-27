@@ -40,11 +40,11 @@
                 <span class="help-block"><small>Before selecting a pause command check if your firmware supports it!</small></span>
             </div>
         </div>
-        <!-- GPIO pin on the raspberry -->
+        <!-- GPIO pin on the Orange -->
         <div class="control-group">
             <label class="control-label">{{ _('Motion Sensor GPIO Pin:') }}</label>
-            <div class="controls" data-toggle="tooltip" title="{{ _('Which Raspberry Pi GPIO pin your switch is attached to (-1 disables the plugin)') }}">
-                <input type="text" step="any" min="0" class="input-mini text-right" data-bind="value: settingsViewModel.settings.plugins.smartfilamentsensor_orangepi.motion_sensor_pin">
+            <div class="controls" data-toggle="tooltip" title="{{ _('Which Orange Pi GPIO pin your switch is attached to (-1 disables the plugin)') }}">
+                <input type="text" step="any" class="input-mini text-right" data-bind="value: settingsViewModel.settings.plugins.smartfilamentsensor_orangepi.motion_sensor_pin">
             </div>
         </div>
         <!-- Enable / Disable detection -->
