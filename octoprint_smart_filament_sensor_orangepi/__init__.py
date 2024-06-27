@@ -72,16 +72,8 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 # Initialization methods
     def _setup_sensor(self):
         # Clean up before intializing again, because ports could already be in use
-
-        if(self.mode == 0):
-            self._logger.info("Using SUNXI Mode")
-            GPIO.setmode(GPIO.SUNXI)
-        elif(self.mode == 1):
-            self._logger.info("Using Board Mode")
-            GPIO.setmode(GPIO.BOARD)
-        else:
-            self._logger.info("Using BCM Mode")
-            GPIO.setmode(GPIO.BCM)
+        self._logger.info("Using SUNXI Mode")
+        GPIO.setmode(GPIO.SUNXI)
 
         GPIO.setup(self.motion_sensor_pin, GPIO.IN)
 
@@ -116,7 +108,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
             #Motion sensor
             mode=0,    # Board Mode
             motion_sensor_enabled = True, #Sensor detection is enabled by default
-            motion_sensor_pin=-1,  # Default is no pin
+            motion_sensor_pin = 0,  # Default is no pin
             detection_method = 0, # 0 = timeout detection, 1 = distance detection
 
             # Distance detection
