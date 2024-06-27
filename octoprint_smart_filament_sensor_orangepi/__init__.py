@@ -75,10 +75,10 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
 
         if(self.mode == 0):
             self._logger.info("Using SUNXI Mode")
-			GPIO.setmode(GPIO.SUNXI)
+            GPIO.setmode(GPIO.SUNXI)
 		elif(self.mode == 1):
-			self._logger.info("Using Board Mode")
-			GPIO.setmode(GPIO.BOARD)
+            self._logger.info("Using Board Mode")
+            GPIO.setmode(GPIO.BOARD)
         else:
             self._logger.info("Using BCM Mode")
             GPIO.setmode(GPIO.BCM)
