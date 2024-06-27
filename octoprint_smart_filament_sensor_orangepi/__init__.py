@@ -75,7 +75,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
         self._logger.info("Using SUNXI Mode")
         GPIO.setmode(GPIO.SUNXI)
 
-        GPIO.setup(self.motion_sensor_pin, GPIO.IN)
+        GPIO.setup(self.motion_sensor_pin, GPIO.IN, GPIO.PUD_DOWN)
 
         # Add reset_distance if detection_method is distance_detection
         if (self.detection_method == 1):
