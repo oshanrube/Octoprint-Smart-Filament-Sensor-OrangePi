@@ -108,7 +108,7 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
             #Motion sensor
             mode=0,    # Board Mode
             motion_sensor_enabled = True, #Sensor detection is enabled by default
-            motion_sensor_pin = 'PA00',  # Default is no pin
+            motion_sensor_pin = 'PC11',  # Default is no pin
             detection_method = 0, # 0 = timeout detection, 1 = distance detection
 
             # Distance detection
