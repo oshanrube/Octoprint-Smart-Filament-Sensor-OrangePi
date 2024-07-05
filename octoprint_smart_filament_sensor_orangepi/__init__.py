@@ -60,11 +60,6 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
     def motion_sensor_max_not_moving(self):
         return int(self._settings.get(["motion_sensor_max_not_moving"]))
 
-#General Properties
-    @property
-    def mode(self):
-        return int(self._settings.get(["mode"]))
-
     #@property
     #def send_gcode_only_once(self):
     #    return self._settings.get_boolean(["send_gcode_only_once"])
@@ -106,7 +101,6 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
     def get_settings_defaults(self):
         return dict(
             #Motion sensor
-            mode=0,    # Board Mode
             motion_sensor_enabled = True, #Sensor detection is enabled by default
             motion_sensor_pin = 'PC11',  # Default is no pin
             detection_method = 0, # 0 = timeout detection, 1 = distance detection
@@ -155,10 +149,6 @@ class SmartFilamentSensor(octoprint.plugin.StartupPlugin,
         self._logger.debug("Sensor enabled: " + str(self.motion_sensor_enabled))
 
         if self.motion_sensor_enabled:
-            if (self.mode == 0):
-                self._logger.debug("GPIO mode: Board Mode")
-            else:
-                self._logger.debug("GPIO mode: BCM Mode")
             self._logger.debug("GPIO pin: " + str(self.motion_sensor_pin))
 
             # Distance detection

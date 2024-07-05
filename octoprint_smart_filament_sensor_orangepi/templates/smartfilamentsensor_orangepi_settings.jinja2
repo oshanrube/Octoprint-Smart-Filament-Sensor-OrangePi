@@ -5,15 +5,6 @@
         <div class="alert alert-primary">With V1.1.2 of the plugin, the Distance Detection was improved.
         It is recommended to use the distance detection as it is more accurate than the timeout detection.</div>
         <h6>{{ _('General') }}</h6>
-        <div class="control-group">
-            <label class="control-label">{{ _('Board Pin Mode:') }}</label>
-            <div class="controls" data-toggle="tooltip" title="{{ _('OPi pins numbered in Board mode or BCM mode?') }}">
-                <select class="select-mini" data-bind="value: settingsViewModel.settings.plugins.smartfilamentsensor_orangepi.mode">
-                    <option value=0>{{ _('Board Mode') }}</option>
-                    <option value=1>{{ _('BCM Mode') }}</option>
-                </select>
-            </div>
-        </div>
         <!-- Configuration for detection method -->
         <div class="control-group">
             <label class="control-label">{{ _('Detection Method:') }}</label>

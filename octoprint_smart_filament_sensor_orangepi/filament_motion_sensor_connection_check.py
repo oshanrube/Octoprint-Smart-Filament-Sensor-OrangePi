@@ -16,7 +16,7 @@ import time
 #CONST
 # Configure your GPIO pin
 USED_PIN = 11
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.SUNIX)
 #GPIO.setmode(GPIO.BCM)
 # Time in seconds
 max_not_moving_time = 2
