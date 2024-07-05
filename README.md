@@ -1,9 +1,10 @@
 # Octoprint-Smart-Filament-Sensor-OrangePi
 
-[OctoPrint](http://octoprint.org/) plugin that lets integrate Smart Filament Sensors like BigTreeTechs SmartFilamentSensor directly to RaspberryPi GPIO pins. This enables that this sensor can also be used on 3D Printers, that do not have a E0-Stop like e.g. Creality 1.1.4 Mainboard of Ender 3.
+[OctoPrint](http://octoprint.org/) plugin that lets integrate Smart Filament Sensors like BigTreeTechs SmartFilamentSensor directly to OrangePi GPIO pins. This enables that this sensor can also be used on 3D Printers, that do not have a E0-Stop like e.g. Creality 1.1.4 Mainboard of Ender 3.
 
 Initial work based on the [Octoprint-Filament-Reloaded](https://github.com/kontakt/Octoprint-Filament-Reloaded) plugin by kontakt.
 Fork of [Octoprint-Filament-Revolutions]https://github.com/RomRider/Octoprint-Filament-Revolutions plugin by RomRider.
+Fork of [Octoprint-Smart-Filament-Sensor]https://github.com/Royrdan/Octoprint-Smart-Filament-Sensor plugin by Royrdan.
 
 The solution for this plugin is inspired by [Marlin Firmware](https://github.com/MarlinFirmware/Marlin)
 
@@ -43,13 +44,7 @@ G for GND  <--- This is ground
 V for VDD  <---  +3.3v in
 
 **Attention**
-There are two different modes for GPIO pins:
-* BCM (Broadcom SOC channel) - the numbers after the GPIO label
-* Board - the number of the pin on the board
-
-E.g.
-* Board Pin **11**
-* BCM GPIO **17**
+GPIO pins are based on SUNIX system eg: PC11 based on https://f1atb.fr/wp-content/uploads/2021/05/pinzero2g.jpg
 
 ### Detection time
 Currently it is necessary to configure a maximum time period no filament movement was detected. This time could be depended on the print speed and maximum print line length. For the beginning - until I figured out how to estimate the best detection time - you can run a test print and messearue your maximum time and configure this value.
